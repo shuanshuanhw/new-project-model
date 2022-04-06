@@ -1,0 +1,15 @@
+1、通过启动类中返回的上下文获取，再注入给其它Bean，就可以到处使用
+ConfigurableApplicationContext app = SpringApplication.run(BeanDemoApplication.class, args);
+
+2、通过工具类获取
+RequestContextUtils.findWebApplicationContext(HttpServletRequest request)
+WebApplicationContextUtils.getWebApplicationContext(ServletContext sc)
+
+3、通过实现接口ApplicationContextAware
+
+4、通过继承抽象类：ApplicationObjectSupport，WebApplicationObjectSupport
+原理参考第3点
+
+5、其他方式
+ContextLoader.getCurrentWebApplicationContext()，或者 ContextLoaderListener.getCurrentWebApplicationContext()
+说明：目前通过这种方式获取上下文为null，从代码可以看出，上下文是通过currentContextPerThread.get(ccl) 来获取的，而currentContextPerThread缓存是通过方法contextInitialized(ServletContextEvent event) 来初始化的，至于为何获取为空，参考：https://www.cnblogs.com/xysn/p/14863896.html

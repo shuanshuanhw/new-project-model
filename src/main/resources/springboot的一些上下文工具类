@@ -1,0 +1,107 @@
+1、RequestContextHolder
+在spring boot中，为了随时都能取到当前请求的request对象，可以通过RequestContextHolder的静态方法getRequestAttributes()获取Request相关的变量，如request, response等。
+如果报空指针异常，需要在配置类中添加 RequestContextListener 的bean，如下：
+@Bean
+public RequestContextListener requestContextListener(){
+	    return new RequestContextListener();
+	}
+
+2、SpringContextHolder
+以静态变量保存Spring ApplicationContext, 可在任何代码任何地方任何时候取出ApplicaitonContext。
+不过SpringContextHolder只是一个自己包装的，不是springboot官方提供的，可以通过@Component或者@Bean注入给容器，才能到处使用。
+关于包装代码，在mybatis-config项目里有
+
+3、BeanFactoryAware
+Spring工厂接口,可以定义类去实现这个接口，只要实现了这个接口，这个类就可以通过getService方法，取得任意的注入容器的类对象。
+但是，SpringContextHolder.getApplicationContext().getBean(TestService.class)，好像也能达到同样的效果？
+
+4、EnvironmentAware
+
+@Component
+public class TestEnvironmentAware implements EnvironmentAware {
+
+    @Override
+    public void setEnvironment(Environment environment) {
+        //取不到为null
+        String bb = environment.getProperty("aa");
+        Integer aa = environment.getProperty("aa.bb", Integer.class);
+        //获取是否使用profile的
+        boolean dev = environment.acceptsProfiles(Profiles.of("dev"));
+        //取不到就抛出异常
+        String bb1 = environment.getRequiredProperty("bb");
+        //其他自行扩展
+    }
+}
+但是，其实也可以通过直接注解取得
+@Autowired
+private Environment environment;
+其实获取系统变量有一种非常简单的方法，直接一行代码搞定，代码为：
+System.getenv().get( "JAVA_HOME" )
+
+这么看，其实EnvironmentAware好像没啥用
+
+5、MessageSourceAware
+除了直接使用ApplicationContext对象来获取对应code的国际化信息外，我们还可以给对应的bean直接注入一个MessageSource对象以直接通过对应的MessageSource对象来获取对应code的国际化信息。给bean注入MessageSource主要有两种方式，一种是直接注入，一种是间接的通过实现MessageSourceAware接口进行注入。
+似乎这个也没啥用处
+
+6、ResourceLoaderAware接口，都是从上下文取出资源加载类，只是在使用上更加有分类感，实地用熟了没啥用吧
+ResourceLoaderAware是一个标记接口，用于通过ApplicationContext上下文注入ResourceLoader。
+@Configuration
+public class ResourceBean implements ResourceLoaderAware {
+    private ResourceLoader resourceLoader;
+    @Override
+    public void setResourceLoader(ResourceLoader resourceLoader) {
+        this.resourceLoader = resourceLoader;
+    }
+    public ResourceLoader getResourceLoader() {
+        return resourceLoader;
+    }
+}
+
+对于目前所有ApplicationContext都实现了ResourceLoader，因此可以使用其来加载资源。
+         ClassPathXmlApplicationContext：不指定前缀将返回默认的ClassPathResource资源，否则将根据前缀来加载资源；
+         FileSystemXmlApplicationContext：不指定前缀将返回FileSystemResource，否则将根据前缀来加载资源；
+         WebApplicationContext：不指定前缀将返回ServletContextResource，否则将根据前缀来加载资源；
+         其他：不指定前缀根据当前上下文返回Resource实现，否则将根据前缀来加载资源。
+
+7、BeanNameAware
+继承了BeanNameAware的Bean，可以在上下文启动时，将自己在容器里的名字注入给自己，这个真不知道有什么用。
+
+8、BeanClassLoaderAware
+哪个Bean实现了BeanClassLoaderAware，就可以在这个Bean本身取得这个Bean的类加载器，目前不知有什么用。
+
+9、ApplicationContextAware
+顾名思义，哪个类继承了它哪个类就可以取得上下文，但这只是取得上下文的其中一种方法而已。
+
+10、ApplicationEventPublisherAware
+通过继承这个接口，可以取得ApplicationEventPublisher，ApplicationEventPublisher作为事件发布者，与事件（继承ApplicationEvent ）、
+事件监听者（实现ApplicationListener）一起，组成了spring的事件发布模型。
+这个目前在百度上没找到其它方法取得ApplicationEventPublisher，这个接口现在看来还是比较有用的。
+
+11、EmbeddedValueResolverAware，好像是有点用，但是大家还是用@Value注入的比较多，看起来比较优雅
+Spring 获取 properties 文件单个属性值，一般使用 @Value 件属性值。
+下面提供另一种基于Spring解析获取 properties 文件单个属性值的方式，使用 EmbeddedValueResolverAware 。
+@Component
+// @PropertySource("classpath:/dbconfig.properties")  		//指定 properties 文件，不是必须的
+public class PropertiesUtil implements EmbeddedValueResolverAware {
+
+    private StringValueResolver resolver;
+
+    @Override
+    public void setEmbeddedValueResolver(StringValueResolver resolver) {
+        this.resolver = resolver;
+    }
+
+    /**
+     * 获取属性，直接传入属性名称即可
+     * @param key
+     * @return
+     */
+    public String getPropertiesValue(String key) {
+        StringBuilder name = new StringBuilder("${").append(key).append("}");
+        return resolver.resolveStringValue(name);
+    }
+}
+具体使用：
+String s = propertiesUtil.getPropertiesValue("db.user");
+

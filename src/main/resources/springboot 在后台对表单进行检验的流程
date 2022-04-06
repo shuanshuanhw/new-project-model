@@ -1,0 +1,58 @@
+1、在Spring项目中，微服务之间常采用Restful接口。那么问题来了，当前段调用后端接口，或者后端微服务接口被其它微服务调用时，我们不可能只依赖接口调用方对参数准确性进行检查，接口提供方也需要在入口对参数准确进行检查。
+2、依赖
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-validation</artifactId>
+        </dependency>
+3、在实体店的参数上加注
+              @NotBlank(message = "请输入名称")
+              @Length(message = "名称不能超过个 {max} 字符", max = 10)
+              @NotNull(message = "请输入年龄")
+              @Range(message = "年龄范围为 {min} 到 {max} 之间", min = 1, max = 100)
+
+4、在Controller对应的参数上，加上@valid注解，如下：
+
+public String test1(@Valid SysUser user, BindingResult results)
+    {
+        if (results.hasErrors())
+            return results.getFieldError().getDefaultMessage();
+        return "成功返回";
+    }
+
+5、类似@NotBlank使用方式的注解
+@NotNull：不能为null，但可以为empty
+@NotEmpty：不能为null，而且长度必须大于0
+@NotBlank：只能作用在String上，不能为null，而且调用trim()后，长度必须大于0。（trim()删除字符串的头尾空白符）
+样例辅助理解：
+
+1.String name = null；则注解检查结果：
+@NotNull: false
+@NotEmpty:false
+@NotBlank:false
+
+2.String name = ""；则注解检查结果：
+@NotNull:true
+@NotEmpty: false
+@NotBlank: false
+
+3.String name = " "；则注解检查结果：
+@NotNull: true
+@NotEmpty: true
+@NotBlank: false
+
+4.String name = "Great answer!"；则注解检查结果：
+@NotNull: true
+@NotEmpty:true
+@NotBlank:true
+
+6、其他注解：
+
+    @Length(message = "名称不能超过个 {max} 字符"， max = 10)
+    public String name;
+
+    /** 年龄 */
+    @Range(message = "年龄范围为 {min} 到 {max} 之间"，min = 1，max = 100)
+    public Integer age;
+
+    @Size(message = "兴趣最多选择{max}个"， max = 5)
+    private List<String> hobbyList；

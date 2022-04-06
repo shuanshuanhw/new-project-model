@@ -1,0 +1,12 @@
+1、引入实体类基类，BaseEntity，让实体类都继承它，这样可以抽离出共同的一些变量。
+2、创建AJAX返回结果的包装类，AjaxResult，可以对返回结果有一个统一的定义。
+3、创建字符串工具类，StringUtils，继承lang3.StringUtils，扩充了一些对数组和map的判空，这个目前觉得用处不大。
+4、引用存储通用常量信息的类，Constants
+5、引用字符串格式化类，StrFormatter，功能类似printf，但用起来简单一些吧
+6、引入转换类，Convert，可以将其它类型转成字符串，好处就是转错不会报错。
+7、引入字符集工具类，CharsetKit，目前不知用来干什么
+8、引入Swagger，Swagger 是一个规范且完整的框架，用于生成、描述、调用和可视化 RESTful 风格的 Web 服务。
+9、引入注解方式的Log，定义注解在annotation，注解实现在aspectj
+10、引入spring的事件发布和监听，减少代码的耦合
+11、多使用配置文件来配置变量，再通过@Value和代码关联起来，减少硬编码
+
