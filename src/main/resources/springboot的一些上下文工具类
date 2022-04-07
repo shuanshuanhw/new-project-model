@@ -15,6 +15,9 @@ public RequestContextListener requestContextListener(){
 Spring工厂接口,可以定义类去实现这个接口，只要实现了这个接口，这个类就可以通过getService方法，取得任意的注入容器的类对象。
 但是，SpringContextHolder.getApplicationContext().getBean(TestService.class)，好像也能达到同样的效果？
 
+关于aware
+Spring IOC容器中 Bean是感知不到容器的存在，Aware(意识到的)接口就是帮助Bean感知到IOC容器的存在，即获取当前Bean对应的Spring的一些组件，如当前Bean对应的ApplicationContext等。
+
 4、EnvironmentAware
 
 @Component
@@ -105,4 +108,9 @@ public class PropertiesUtil implements EmbeddedValueResolverAware {
 具体使用：
 String s = propertiesUtil.getPropertiesValue("db.user");
 
-12、
+12、ServletContextAware、ServletConfigAware
+分别对应ServletContext、ServletConfig
+ServletContext接口是一个域对象(或叫 上下文对象)，用来存储数据，比如web应用的上下文路径、返回指向映射到指定路径的资源的 URL。该路径必须以 "/" 开头
+ServletConfig接口，是一个配置对象，返回此 servlet 实例的名称
+具体用法参考 https://blog.csdn.net/sinat_36184075/article/details/105500711
+

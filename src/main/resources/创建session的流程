@@ -1,0 +1,6 @@
+在网站使用中，为了保存用户信息，服务器会给每一个用户（浏览器）创建一个Session。
+流程：
+    1、客户端请求服务器
+    2、服务器创建Session，在服务器端保存用户数据
+    3、服务器返回给客户端一个SessionId（JSESESSION）是一个Cookie
+    4、用户在Session作用时间内再次访问服务器就会根据SessionId取出用户的Session
