@@ -105,3 +105,4 @@ public class PropertiesUtil implements EmbeddedValueResolverAware {
 具体使用：
 String s = propertiesUtil.getPropertiesValue("db.user");
 
+12、
