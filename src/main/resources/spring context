@@ -1,0 +1,18 @@
+1、context 是什么
+进程在执行程序（不管是用户程序，还是内核中的中断程序）时，都会依赖一个上下文，这个上下文由多种数据结构组成，可以提供我们运行时需要的一些数据和保存运行时的一些数据。那其实 context 就可以理解对一个程序运行时所需要的一些数据结构的抽象表达呗。
+2、spring context 是什么
+spring 的 ioc 容器也是程序呀，那它的执行也肯定需要依赖一个上下文。所以大家应该理解 spring context 的意思了吧。那 spring context 既然是 spring 的上下文，按照我们上面的说法上下文会对应数据结构，那 spring context 的数据结构是什么呢？换句话说，spring context 究竟包括什么？接下来我就把这个抽象的概念给大家对应到实打实的数据结构上。
+3、spring context 包括什么
+主要包括：
+
+    1- DefaultListableBeanFactory
+    这就是大家常说的 ioc 容器，它里面有很多 map、list。spring 帮我们创建的 singleton 类型的 bean 就存放在其中一个 map 中。我们定义的监听器（ApplicationListener）也被放到一个 Set 集合中。
+    2- BeanDefinitionRegistry
+    把一个 BeanDefinition 放到 beanDefinitionMap。
+    3- AnnotatedBeanDefinitionReader
+    针对 AnnotationConfigApplicationContext 而言。一个 BeanDefinition 读取器。
+    4- 扩展点集合
+    存放 spring 扩展点（主要是 BeanFactoryPostProcessor、BeanPostProcessor）接口的 list 集合。
+
+4、初始化和启动
+我们平时常说的spring 启动其实就是调用 AbstractApplicationContext#refresh 完成 spring context 的初始化和启动过程。spring context 初始化从开始到最后结束以及启动，这整个过程都在 refresh 这个方法中。refresh 方法刚开始做的是一些 spring context 的准备工作，也就是 spring context 的初始化，比如：创建 BeanFactory、注册 BeanFactoryPostProcessor 等，只有等这些准备工作做好以后才去开始 spring context 的启动。
