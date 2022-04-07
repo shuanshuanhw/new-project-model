@@ -4,3 +4,6 @@
     2、服务器创建Session，在服务器端保存用户数据
     3、服务器返回给客户端一个SessionId（JSESESSION）是一个Cookie
     4、用户在Session作用时间内再次访问服务器就会根据SessionId取出用户的Session
+
+通常情况下 session 交由容器 (tomcat) 来负责存储和管理，但是在多tomcat的情况下不适用。
+HttpServletRequest和HttpSession都是servlet规范中定义的接口，web容器实现的标准。
