@@ -1,0 +1,3 @@
+1、ServletContext sc = request.getServletContext();
+2、通过自动注入获取，该方法可以在@Controller下使用，在Service中注入，要看实际应用，如果是控制器调用，就是控制器的servlet上下文，如果是测试环境，就是其它模拟的
+3、还有其它的，没再研究，够用
