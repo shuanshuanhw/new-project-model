@@ -43,5 +43,5 @@ spring.redis.port=远程 Redis
 
       通过 Redis Desktop Manager 可以查看存储到Redis中的session信息的key都是以
       spring:session打头的。
-      
+
 4、确实能用，目前理解到这个层面
