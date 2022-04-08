@@ -114,3 +114,6 @@ ServletContext接口是一个域对象(或叫 上下文对象)，用来存储数
 ServletConfig接口，是一个配置对象，返回此 servlet 实例的名称
 具体用法参考 https://blog.csdn.net/sinat_36184075/article/details/105500711
 
+13、NotificationPublisherAware
+关于JMS的，目前没搞懂，以后学习可参考https://potoyang.gitbook.io/spring-in-action-v4/untitled-13
+
