@@ -9,4 +9,9 @@
 9、引入注解方式的Log，定义注解在annotation，注解实现在aspectj
 10、引入spring的事件发布和监听，减少代码的耦合
 11、多使用配置文件来配置变量，再通过@Value和代码关联起来，减少硬编码
+12、使用 Lombok 的@RequiredArgsConstructor,可以让类自动生成有参数的构造函数
+13、使用bat和sh等批处理文件，在启动程序时分配好运行内存
+14、@Slf4j的解注，是lombok带的日志注解，可以直接用log.info进行日志记录，在每一个配置类那里info一下，可以更好地调试
+15、当使用iframe时，可以通过window.parent.方法的方式调用window.方法
+
 
