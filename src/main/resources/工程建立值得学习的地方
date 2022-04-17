@@ -5,7 +5,7 @@
 5、引用字符串格式化类，StrFormatter，功能类似printf，但用起来简单一些吧
 6、引入转换类，Convert，可以将其它类型转成字符串，好处就是转错不会报错。
 7、引入字符集工具类，CharsetKit，目前不知用来干什么
-8、引入Swagger，Swagger 是一个规范且完整的框架，用于生成、描述、调用和可视化 RESTful 风格的 Web 服务。
+8、引入Swagger，Swagger 是一个规范且完整的框架，用于生成、描述、调用和可视化 RES3·Tful 风格的 Web 服务。
 9、引入注解方式的Log，定义注解在annotation，注解实现在aspectj
 10、引入spring的事件发布和监听，减少代码的耦合
 11、多使用配置文件来配置变量，再通过@Value和代码关联起来，减少硬编码
@@ -13,5 +13,12 @@
 13、使用bat和sh等批处理文件，在启动程序时分配好运行内存
 14、@Slf4j的解注，是lombok带的日志注解，可以直接用log.info进行日志记录，在每一个配置类那里info一下，可以更好地调试
 15、当使用iframe时，可以通过window.parent.方法的方式调用window.方法
-
-
+16、使用init()方法，可以方便地进行查询、分页等功能
+17、mybatis plus 默认使用雪花算法生成id，可以关闭使用自增，如果前端损失精度，可以在响应的时候转成字符串格式·12
+18、mybatis plus 公共字段自动填充
+1- 在实体字段注解@TableField(fill = FieldFill.INSERT)或@TableField(fill = FieldFill.INSERT_UPDATE)
+2- 继承MetaObjectHandler 新建 自定义元数据对象处理器，并交给spring管理
+19、通过LocalThread类，在同一个线程流程中，传递变量，非常地好用
+20、通过在数据库字段添加排序字段，其实也是一种比较定制化的排序方法
+21、在新建数据库字段时指定索引方法，比如BTREE
+22、spring对文件上传进行封闭，但本质基于两个包commons-fileupload、commmons-io。前端对文件上传控件进行封闭，但本质也是基于form表单

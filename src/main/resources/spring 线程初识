@@ -1,0 +1,6 @@
+1、ThreadLocal
+ThreadLocal并不是一个Thread，而是Thread的局部变量，也许把它命名为ThreadLocalVariable更容易让人理解一些。
+在JDK5.0中，ThreadLocal已经支持泛型，该类的类名已经变为ThreadLocal<T>。API方法也相应进行了调整，新版本的API方法分别是void set(T value)、T get()以及T initialValue()。
+
+客户端发送一次http请求，存放易燃在服端都会分配一个新的线程来处理，在处理过程中涉及到下面类的方法都属于同一个线程
+比如 Filter Controller MetaObjectHandler 等等，大概就是一次处理的所有流程吧
