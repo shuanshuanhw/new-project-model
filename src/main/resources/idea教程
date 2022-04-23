@@ -1,0 +1,66 @@
+idea教程
+1、Alt + Enter 弹出在编辑区的上下文快捷菜单
+2、Ctrl + Shift + A 可以搜索动作，包括一些快捷键本身的搜索
+3、双击Shift 搜索任何地方，可以搜索自己工程代码实体和其它IDE对象
+4、2和3能够搜索系统设置，并现场设置，比如搜show line试试
+5、Ctrl + N 单独搜索类
+6、Ctrl + Shift + F12 切换纯粹的编辑区
+7、Sources：源码目录。一般用于标注类似 src 这种可编译目录。有时候我们不单单项目的 src 目录要可编译，还有其他一些特别的目录也许我们也要作为可编译的目录，就需要对该目录进行此标注。只有 Sources 这种可编译目录才可以新建 Java 类和包，这一点需要牢记。
+8、Tests：单元测试目录。一般用于标注可编译的单元测试目录。在规范的 maven 项目结构中，顶级目录是 src，maven 的 src 我们是不会设置为 Sources 的，而是在其子目录 main 目录下的 java 目录，我们会设置为 Sources。而单元测试的目录是 src - test - java，这里的 java 目录我们就会设置为 Tests，表示该目录是作为可编译的单元测试目录。一般这个和后面几个我们都是在 maven 项目下进行配置的，但是我这里还是会先说说。从这一点我们也可以看出 IntelliJ IDEA 对 maven 项目的支持是比较彻底的。
+9、Resources：资源目录。配置文件，前端页面等。一般用于标注资源文件目录。在 maven 项目下，资源目录是单独划分出来的，其目录为：src - main -resources，这里的 resources 目录我们就会设置为 Resources，表示该目录是作为资源目录。资源目录下的文件是会被编译到输出目录下的。
+10、Test Resources：单元测试资源目录。一般用于标注单元测试的资源文件目录。在 maven 项目下，单元测试的资源目录是单独划分出来的，其目录为：src - test -resources，这里的 resources 目录我们就会设置为 Test Resources，表示该目录是作为单元测试的资源目录。资源目录下的文件是会被编译到输出目录下的。
+11、Excluded：排除的目录，一般为编译文件的输出路径。一般用于标注排除目录。被排除的目录不会被 IntelliJ IDEA 创建索引，相当于被 IntelliJ IDEA 废弃，该目录下的代码文件是不具备代码检查和智能提示等常规代码功能。
+12、安装Idea Javadocs2插件，然后在编辑区弹出上下文菜单，选择给文件加上注释。
+13、Invalidate Caches / Restart、重新build、重新加载pom文件，可能能解决一些莫名其妙的问题
+14、power save mode意思是进入省电模式
+15、可以尝试使用favorites功能，可能会更便利。
+16、Copy path 可以复制文件的各种路径
+17、Paste from history 应该有用处
+18、path from repository root 不知什么意思
+19、Data Flow to Here、 Data Flow from Here 不知什么意思
+20、把光标放在方法名上，IDEA中可以在主菜单中选择Navigate -->Call Hierarchy命令，可看到谁调用了方法。
+21、把光标放在方法名上，右键，选择Find Usage 命令，和20类似的功能
+22、column selection mode，列选择模式，开启后可以在编辑区选择多列，然后同时输入信息
+23、add carets at the end of each selected line，先选择多行，然后启动这个指令，就能够有多个光标在多个行的行尾，方便进行同时输入信息。
+24、Extend selection CTRL + W，在光标处使用指令可以选择词或者句，效果类似于双击鼠标。
+25、shrink selection 逐步收缩选择区域，似乎没啥用
+26、Toggle case 切换大小写，对写代码来说似乎也没啥用
+27、Join Lines， Ctrl+Shift+J，能够合并不同行，但不会影响代码。
+28、Duplicate line Ctrl+D，复制选中行，比较实用
+29、Sort lines 可以根据开头元素是否相同，将各行进行分类，暂时没想到有什么用处
+30、Reverse lines，将选中的行，从头到尾翻过来，没毛用
+31、Transpose 不知什么意思
+32、Indent selection，TAB的效果，向前缩进
+33、Unindent line or selection，向后缩进
+34、Convert indent -> to spaces / to tab，将空格或者缩进互转，代码规范会要求编程时使用4个空格缩进而不是tab，因为不同编辑器下4个空格的宽度看起来是一致的，而tab则长短可能会不一致。
+35、Macros，宏，可以录制并制作快捷键，可能比较实用
+36、Edit as Table，Edit CSV and TSV files in table mode。
+37、Presentation Mode，演示模式下，Idea 会隐藏掉除编辑器之外的所有的组件，而且会放大代码字体，这样子整个屏幕上均是你的代码，看上去会舒服很多。
+38、Distraction-free Mode，集中模式下，编辑中的代码会居中显示，这样子你会更容易将注意力集中在目标代码上，这也是跟其他模式区别最大的地方。
+39、Full Screen，在全屏模式下，你可以使用整个屏幕进行编码。因为全屏模式下会隐藏菜单栏和操作系统控件（例如状态栏）
+40、Zen mode，免打扰模式，类似演示模式，但不会把代码放大
+41、CTRL + ALT + S，呼出设置快捷键
+42、Quick Definition，能够点一下函数或者对象，启动功能，弹出这个函数或对象的完整定义，Quick Type Definition，好像显示一样
+43、Quick Documentation 显示方法或对象的头部重要信息
+44、Parameter Info Ctrl + P，定位在方法上，可以呼出它的重载列表
+45、Type info ，会将整个返回值的式子都选择到
+46、Recent location 最近定位到的代码，Crtl+Shift +E
+47、Recent File Crtl + E
+48、Compare with 对两个页面进行代码对比
+49、Compart with clipboard 将剪切板和文件代码进行比较
+50、Quick switch scheme 集成了一些主题视图等快捷方式，基本没用
+51、Active editor 设置一些编辑区能出现什么辅助元素的开关
+52、bidi text base direction 设置打字的方向，没搞懂，但好像没啥必要去改动
+53、结构视图，可以方便将选择的类的方法显示在小窗口，应该是有用的
+54、TODO tools window，搜索有TODO元素的地方显示出来
+55、Search everywhere 应该是范围最广的搜索
+56、Next method previous method Alt + 箭头，可以找上一个/下一个方法
+57、Select in Alt + F1 定位对象或方法的文件
+58、Jump to navigate bar Alt + HOME，启动后焦点切到文件导航条的文件名上
+59、Declaration or usages Ctrl + B，可以快速定位到方法的定义处
+60、Implementations 可以跳转到接口的实现类
+61、Navigate -> test 寻找不到test方法，会提示新建一个test类
+62、File Path 弹出文件夹定位到这个文件
+63、code complement 里面可能是一些代码补全的功能，但是好像现在已经有自动代码补全了。
+64、code inspect 静态代码分析，还是比较有用的
+65、Debug drop frame跳出上一个调用方法的开始处，idea不能一步一步往后退。Run to cursor，我测出来的是跳到下一个光标处，不支持往前跳，如果中间有断点就先跳到断点。Rerun 'xxxx'：重新运行程序，会关闭服务后重新启动程序。Resume Program (F9)：恢复程序，比如，你在第20行和25行有两个断点，当前运行至第20行，按F9，则运行到下一个断点(即第25行)，再按F9，则运行完整个流程，因为后面已经没有断点了。

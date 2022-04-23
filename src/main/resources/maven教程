@@ -1,0 +1,54 @@
+一、指定jdk版本的方法
+source用来配置源代码使用的开发版本，target用来配置需要生成的目标class文件的编译版本，那么有些朋友可能会问为什么maven编译不使用class将来被部署的环境的jdk版本：有时可能会因maven版本需求或者其他一些插件需求，这些限制规定了我们必须在编译机器上使用比如说jdk7及其以上的版本，但是我们运行的环境使用的是jdk6，这时候就需要增加一个source参数来解决这个问题。
+
+1- springboot专用
+<properties><java.version>1.8</java.version></properties>
+将源Java版本和目标Java版本设置为同一版本，例如，为两者指定Java 1.8
+2-
+<plugins>
+    <plugin>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+            <source>1.8</source>
+            <target>1.8</target>
+        </configuration>
+</plugin>
+</plugins>
+
+3-
+<properties>
+    <maven.compiler.source>1.8</maven.compiler.source>
+<maven.compiler.target>1.8</maven.compiler.target>
+</properties>
+
+4-
+maven-compiler-plugin 3.6和更高版本提供了一种新方法：
+<plugin>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-compiler-plugin</artifactId>
+    <version>3.8.0</version>
+    <configuration>
+        <release>9</release>
+    </configuration></plugin>
+您也可以只声明：
+<properties>
+<maven.compiler.release>9</maven.compiler.release>
+</properties>
+
+二、三种不同范围的配置文件
+类型	在哪定义
+项目级（Per Project）	定义在项目的POM文件pom.xml中
+用户级 （Per User）	定义在Maven的设置xml文件中 (%USER_HOME%/.m2/settings.xml)
+全局（Global）	定义在Maven全局的设置xml文件中 (%M2_HOME%/conf/settings.xml)
+
+三、在Maven的pom.xml文件中，存在如下两种<build>：
+<!-- "Project Build" contains elements of the BaseBuild set and the Build set-->
+  <build>...</build>
+
+  <profiles>
+    <profile>
+      <!-- "Profile Build" contains elements of the BaseBuild set only -->
+      <build>...</build>
+    </profile>
+  </profiles>
+区别在于，build是全局的，而profile build是有着不同的选择的，可以适应多种环境，比如说测试环境，开发环境，运行环境。
