@@ -1,0 +1,10 @@
+1、浏览器处理包含import 和 export的js文件的方法
+在浏览器引用js时，增加属性：type="module"
+2、但是有一些下载下来的插件，包含了只有node才能解析的require模块
+处理方法：
+1- 安装npm install browserify -g
+2- 将js文件解析成浏览器能够认识的，browserify js/main.js -o bundle.js
+3- 通过安装webpack，去打包js文件，也是一个好方法
+
+3、处理跨域问题
+方法一 在自己的浏览器上安装插件，比如firefox，安装cors everywhere插件，就能够在本地浏览器调试
